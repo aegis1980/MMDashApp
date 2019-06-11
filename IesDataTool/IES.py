@@ -13,6 +13,15 @@ class IesDataTool:
         return num != num
 
 
+    @staticmethod
+    def combine_summer_winter(x1, x2):
+        """On the logic that person can put on clothes/ take them off to become more comfortable"""
+        if (abs(x1) < abs(x2)): #x1 more comfortable (closer to zero)
+            return x1
+        else:
+            return x2
+
+
     def __init__(self, zone_names, scenarios):
         self.zone_names = zone_names    
         self.scenarios = scenarios
@@ -93,8 +102,8 @@ class IesDataTool:
         else:
             df1 = self._imported_df[0]
             df2 =  self._imported_df[1]
-            self._full_df = pd.DataFrame(df1.values*df2.values, columns=df1.columns, index=df1.index)
-            self.__combine_summer_winter()
+            self._full_df = df1.DataFrame.combine(df2,self.__combine_summer_winter())
+            
 
 
         if save_to_pickle:
@@ -103,11 +112,7 @@ class IesDataTool:
             print ('...Done. ')
  
 
-    def __combine_summer_winter(self):
-        df1 = self._imported_df[0]
-        df2 =  self._imported_df[1]
-        
-        return
+
 
 
     @property

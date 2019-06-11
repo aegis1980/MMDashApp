@@ -3,6 +3,7 @@ import seaborn as sns
 import pandas as pd
 import matplotlib.pyplot as plt
 from IES import IesDataTool as IesDataTool
+import numpy as np
 
 def filterFunction(x):
     if x>0.5:
@@ -21,7 +22,18 @@ def main():
 
     df = my_ies_tool.fullDataframe
 
-    print(df.iloc[:, df.columns.get_level_values(1)=='Zone 1'])
+    z1 = df.iloc[:, df.columns.get_level_values(1)=='Zone 1'].transpose().to_numpy()
+    bins = [-2.5,0, 0.5, 0.75, 1, 1.25,2, np.inf]
+    names = ['<2', '2-18', '18-35', '35-65', '65+']
+    limits = [0.5, 0.75, 1, 1.25]
+
+    new = pd.cut(z1[0], bins = bins).value_counts()
+
+    print(new)
+
+
+   # a = z1.gt(limits).sum()
+   # print(a)
     scenario_col = 'BECA IGU'
     tup = ('BECA IGU','Zone 1')
 
