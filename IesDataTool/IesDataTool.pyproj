@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>26cff361-df08-42e9-93f9-8edabdb049fa</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>runme.py</StartupFile>
+    <StartupFile>app.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -23,6 +23,9 @@
   <ItemGroup>
     <Compile Include="IES.py" />
     <Compile Include="module1.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="runme.py" />

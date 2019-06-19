@@ -103,6 +103,7 @@ class IesDataTool:
             df1 = self._imported_df[0]
             df2 =  self._imported_df[1]
             self._full_df = df1.DataFrame.combine(df2,self.__combine_summer_winter())
+            self._full_df = self._full_df.set_index(['date','time'])
             
 
 
@@ -112,7 +113,11 @@ class IesDataTool:
             print ('...Done. ')
  
 
-
+    def get_heatmap_array_df(self, zones = None, scenario = None, 
+                             timestart = None, timestop = None):
+        df = self.fullDataframe[[(scenario, i) for i in zones]].max(axis=1).unstack().transpose().iloc[::-1]
+        print(df.index)
+        return df
 
 
     @property
