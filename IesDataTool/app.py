@@ -26,6 +26,11 @@ my_ies_tool = IesDataTool(zone_names,glasses)
 my_ies_tool.load_pmv_data([filename],load_from_pickle = True, save_to_pickle = True)
 
 
+def format_time_from_slider(slider_time):
+    t =  '{}:{}:00'.format(math.floor(slider_time/2),(slider_time % 2)*30)
+    return pd.datetime.strptime(t,'%H:%M:%S').time()
+
+
 def my_filter(x, pmv):
     mid = 0.5*(pmv[0]+pmv[1])
     if x<=pmv[0]:
@@ -90,7 +95,15 @@ body = dbc.Container([
                 
             ),
             html.Div(id='slider-output-start'),
-           html.Div(id='slider-output-end')
+            html.Div(id='slider-output-end'),   
+
+            dbc.FormGroup(
+                [
+                    dbc.Label("N-hottest"),
+                    dbc.Input(id='n-hottest', placeholder="Number...", type="number", min=1, max=50, step=1),
+                    dbc.FormText("Input number"),
+                ]
+)
             
         ], width = 6)
     ]),
@@ -115,25 +128,30 @@ app.layout = html.Div([navbar, body])
      Output('plain-heatmap', 'figure')],
     [Input('pmv-slider', 'value'),
      Input('scenario-select','value'),
-     Input('zones-select','values')])
-def update_figure(pmv,scenario, zones):
-    df = my_ies_tool.get_heatmap_array_df(zones= zones, scenario=scenario)
+     Input('zones-select','values'),
+     Input('time-slider', 'value'),
+     Input('n-hottest', 'value')])
+def update_figure(pmv,scenario, zones, time_range, hottest_n):
+    t = list(map (format_time_from_slider, time_range))
+    df = my_ies_tool.get_heatmap_array_df(zones= zones, scenario=scenario, time_range = t, hottest_n=hottest_n)
+
     t= marks= {i: '{}:{}:00'.format(math.floor(i/2),(i % 2)*30) for i in range(0, 23*2)}
-    t1 = pd.datetime.strptime('21:30:00','%H:%M:%S').time()
-    t2 = pd.datetime.strptime('23:30:00','%H:%M:%S').time()
-    lf = df.loc[t2:t1]
-    print(lf)
+
     filtered_df = df.applymap(lambda x : my_filter(x,pmv))
     mid = 0.5*(pmv[0]+pmv[1])
     marks= {i: '{}:{}:00'.format(math.floor(i/2),(i % 2)*30) for i in range(0, 24*2)},
 
+    readable_times = [str(x)[:-3] for x in df.index.tolist()] # times for y axes.
+
     data_plain = go.Heatmap(
                     z= df,
                     zmin = -2.0,
-                    zmax = 2.0)
+                    zmax = 2.0,
+                    y = readable_times)
         
     data_filtered = go.Heatmap(
                     z= filtered_df,
+                    y = readable_times,
                     colorscale= [
                             [0, 'rgb(0,0,255)'],
                             [0.5, 'rgb(255,255,255)'],
@@ -148,10 +166,10 @@ def update_figure(pmv,scenario, zones):
 @app.callback(
     [Output('slider-output-start', 'children'),
      Output('slider-output-end', 'children')],
-    [dash.dependencies.Input('time-slider', 'value')])
+    [Input('time-slider', 'value')])
 def update_output(value):
-    t1 = 'Start time {}:{}:00'.format(math.floor(value[0]/2),(value[0] % 2)*30)
-    t2 = 'End time {}:{}:00'.format(math.floor(value[1]/2),(value[1] % 2)*30)
+    t1 = 'Start time {}:{}'.format(math.floor(value[0]/2),(value[0] % 2)*30)
+    t2 = 'End time {}:{}'.format(math.floor(value[1]/2),(value[1] % 2)*30)
     return t1,t2
 
 

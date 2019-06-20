@@ -114,10 +114,27 @@ class IesDataTool:
  
 
     def get_heatmap_array_df(self, zones = None, scenario = None, 
-                             timestart = None, timestop = None):
+                             time_range = None, hottest_n = None):
+
         df = self.fullDataframe[[(scenario, i) for i in zones]].max(axis=1).unstack().transpose().iloc[::-1]
-        print(df.index)
+
+        if time_range is not None:
+            df = df.loc[time_range[1]:time_range[0]]
+
+        df = df[::-1] # reverse rows so early is on bottom of hmap
+
+        if isinstance(hottest_n, int): 
+
+            # taking 'hottest' as largest summed pmv. over allotted time period.
+            sum = df.sum().sort_values(ascending = False)
+            sum = sum[:-(len(sum)-hottest_n)]
+            df = df[sum.index]
+
         return df
+
+
+
+
 
 
     @property
