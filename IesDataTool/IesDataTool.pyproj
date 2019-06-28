@@ -35,6 +35,7 @@
     <Folder Include="data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="data\data_file.xlsx" />
     <Content Include="data\full_PMV_summer_clo.csv" />
   </ItemGroup>
   <ItemGroup>

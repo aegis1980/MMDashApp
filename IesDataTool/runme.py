@@ -15,10 +15,10 @@ def filterFunction(x):
 def main():
     zone_names = ['Zone 1','Zone 2','Zone 3','Zone 4','Zone 5','Zone 6','Zone 7','Zone 8']
     glasses = ['BECA SU', 'BECA IGU','MM IGU', 'MM SG' ]
-    filename = 'C:/data/full_pmv_summer_clo.csv'
+    filename = 'data/data_file.xlsx'
 
     my_ies_tool = IesDataTool(zone_names,glasses)   
-    my_ies_tool.load_pmv_data([filename],load_from_pickle = True, save_to_pickle = True)
+    my_ies_tool.load_data([filename],load_from_pickle = True, save_to_pickle = True)
 
     df = my_ies_tool.fullDataframe
     #n = df.iloc[:,'date']

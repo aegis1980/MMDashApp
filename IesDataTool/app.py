@@ -17,13 +17,12 @@ import math
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 
-
-zone_names = ['Zone 1','Zone 2','Zone 3','Zone 4','Zone 5','Zone 6','Zone 7','Zone 8']
-glasses = ['BECA SU', 'BECA IGU','MM IGU', 'MM SG' ]
-filename = 'C:/data/full_pmv_summer_clo.csv'
+zone_names = ['Lower perimeter','Lower inner','Bleachers perimeter','Bleachers inner','Upper perimeter','Upper inner','Lower foyer perimeter','Lower foyer inner']
+glasses = ['BECA SU', 'BECA IGU','MM SU', 'MM IGU' ]
+filename = 'data\data_file.xlsx'
 
 my_ies_tool = IesDataTool(zone_names,glasses)   
-my_ies_tool.load_pmv_data([filename],load_from_pickle = True, save_to_pickle = True)
+my_ies_tool.load_data(filename,load_from_pickle = True, save_to_pickle = True)
 
 
 def format_time_from_slider(slider_time):
@@ -84,13 +83,14 @@ body = dbc.Container([
         ], width = 3),
 
        dbc.Col([
+
             dbc.Label("Time range select"),
                 dcc.RangeSlider(
                 id='time-slider',
                 min=0,
                 max=48,
-                value=[8,20],
-                step=1,
+                value=[16,36],
+                step=2,
                 updatemode='drag'
                 
             ),
@@ -99,8 +99,21 @@ body = dbc.Container([
 
             dbc.FormGroup(
                 [
+                    dbc.Label("PMV range"),
+                    dcc.RangeSlider(
+                        id='pmv-slider',
+                        min=-2,
+                        max=2,
+                        value=[-0.5,0.5],
+                        marks= {i: '{}'.format(i) for i in np.arange(-2, 2, 0.25)},
+                        step = 0.25
+                    )
+                ]),
+
+            dbc.FormGroup(
+                [
                     dbc.Label("N-hottest"),
-                    dbc.Input(id='n-hottest', placeholder="Number...", type="number", min=1, max=50, step=1),
+                    dbc.Input(id='n-hottest', placeholder="Number...", type="number", value=30, min=1, max=50, step=1),
                     dbc.FormText("Input number"),
                 ]
 )
@@ -110,15 +123,8 @@ body = dbc.Container([
 
     dcc.Graph(id='plain-heatmap'),
     
-    dcc.RangeSlider(
-        id='pmv-slider',
-        min=-3,
-        max=3,
-        value=[-0.5,0.5],
-        marks= {i: 'PMV {}'.format(i) for i in np.arange(-2, 2, 0.25)},
-        step = 0.25
-    ),
-     dcc.Graph(id='graph-with-slider'),
+   
+    dcc.Graph(id='graph-with-slider'),
 ])
 
 app.layout = html.Div([navbar, body])
@@ -133,24 +139,29 @@ app.layout = html.Div([navbar, body])
      Input('n-hottest', 'value')])
 def update_figure(pmv,scenario, zones, time_range, hottest_n):
     t = list(map (format_time_from_slider, time_range))
-    df = my_ies_tool.get_heatmap_array_df(zones= zones, scenario=scenario, time_range = t, hottest_n=hottest_n)
-
-    t= marks= {i: '{}:{}:00'.format(math.floor(i/2),(i % 2)*30) for i in range(0, 23*2)}
+    df = my_ies_tool.get_heatmap_array_df(dataset= IesDataTool.COMBINED_PMV, zones= zones, scenario=scenario, time_range = t, hottest_n=hottest_n)
 
     filtered_df = df.applymap(lambda x : my_filter(x,pmv))
-    mid = 0.5*(pmv[0]+pmv[1])
-    marks= {i: '{}:{}:00'.format(math.floor(i/2),(i % 2)*30) for i in range(0, 24*2)},
 
     readable_times = [str(x)[:-3] for x in df.index.tolist()] # times for y axes.
+    readable_dates = [pd.to_datetime(x).strftime('%d %b') for x in df.columns.values.tolist()]
+
+
 
     data_plain = go.Heatmap(
                     z= df,
-                    zmin = -2.0,
-                    zmax = 2.0,
+                    xgap = 2,
+                    ygap = 1,
+                    zmid = 0,
+                    zmax = df.values.max(),
+                    x = readable_dates,
                     y = readable_times)
-        
+
     data_filtered = go.Heatmap(
                     z= filtered_df,
+                    xgap = 2,
+                    ygap = 1,
+                    x = readable_dates,
                     y = readable_times,
                     colorscale= [
                             [0, 'rgb(0,0,255)'],
