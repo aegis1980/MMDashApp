@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>26cff361-df08-42e9-93f9-8edabdb049fa</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>app.py</StartupFile>
+    <StartupFile>index.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,7 +22,19 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="vizapp\layout.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="vizapp\app.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="vizapp\callbacks.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="IES.py" />
+    <Compile Include="index.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="module1.py">
       <SubType>Code</SubType>
     </Compile>
@@ -33,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="data\" />
+    <Folder Include="vizapp\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\data_file.xlsx" />
