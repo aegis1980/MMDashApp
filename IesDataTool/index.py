@@ -12,10 +12,23 @@ from app import app
 from vizapp.layout import app_page as vizapp_page 
 import vizapp.callbacks
 
+MOTTS_LOGO = "static/img/mm_logo.svg"
 
-navbar = dbc.NavbarSimple(
-    children=[
-        dbc.NavItem(dbc.NavLink("Link", href="#")),
+navbar = dbc.Navbar(
+    dbc.Container(
+        children = [
+            html.A(
+            # Use row and col to control vertical alignment of logo / brand
+            dbc.Row(
+                [
+                    dbc.Col(html.Img(src=MOTTS_LOGO, height="65px")),
+                    dbc.Col(dbc.NavbarBrand("IES Data viewer", className="ml-2")),
+                    dbc.Col("UoA Rec Centre Atrium")
+                ],
+                align="center",
+                no_gutters=True,
+            ),
+        ),
         dbc.DropdownMenu(
             nav=True,
             in_navbar=True,
@@ -27,9 +40,9 @@ navbar = dbc.NavbarSimple(
                 dbc.DropdownMenuItem("Entry 3"),
             ],
         ),
-    ],
-    brand="Comfort",
-    brand_href="#",
+    ]),
+    color="dark",
+    dark=True,
     sticky="top",
 )
 
@@ -39,7 +52,7 @@ app.layout = html.Div([
     navbar,
 
     # content will be rendered in this element
-    dbc.Container(id='page-content')
+    dbc.Container(id='page-content', fluid=False)
 ])
 
 

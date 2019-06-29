@@ -23,10 +23,10 @@ def format_time_from_slider(slider_time):
     return pd.datetime.strptime(t,'%H:%M:%S').time()
 
 
+
 def my_filter(x, pmv):
-    mid = 0.5*(pmv[0]+pmv[1])
-    if x<=pmv[0]:
-        return pmv[0]
-    elif x>=pmv[1]:
-        return pmv[1]
-    return mid
+    """ filters pmv data for binary heatmap. """
+    if x>=pmv:
+        return 1
+    else:
+        return 0

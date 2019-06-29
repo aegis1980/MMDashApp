@@ -45,11 +45,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="data\" />
+    <Folder Include="assets\" />
+    <Folder Include="static\" />
+    <Folder Include="static\img\" />
     <Folder Include="vizapp\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\styling.css" />
     <Content Include="data\data_file.xlsx" />
     <Content Include="data\full_PMV_summer_clo.csv" />
+    <Content Include="static\img\mm_logo.png" />
+    <Content Include="static\img\mm_logo.svg" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">

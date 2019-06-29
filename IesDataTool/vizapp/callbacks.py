@@ -1,7 +1,7 @@
 ""
 
 from app import app
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 import plotly.graph_objs as go
 
 import pandas as pd
@@ -47,15 +47,15 @@ def update_figure(pmv,scenario, zones, time_range, hottest_n):
                     ygap = 1,
                     x = readable_dates,
                     y = readable_times,
+                    opacity=0.5,
                     colorscale= [
-                            [0, 'rgb(0,0,255)'],
-                            [0.5, 'rgb(255,255,255)'],
-                            [1, 'rgb(255,0,0)']
+                            [0, 'rgb(255,255,255)'],
+                            [1, 'rgb(0,0,0)']
                         ],
                     showscale=False
                 )
 
-    return {'data': [data_filtered]},{'data': [data_plain]}
+    return {'data': [data_plain,data_filtered]},{'data': [data_plain]}
 
 
 @app.callback(
@@ -67,3 +67,14 @@ def update_output(value):
     t2 = 'End time {}:{}'.format(math.floor(value[1]/2),(value[1] % 2)*30)
     return t1,t2
 
+
+
+@app.callback(
+    Output("collapse", "is_open"),
+    [Input("collapse-button", "n_clicks")],
+    [State("collapse", "is_open")],
+)
+def toggle_collapse(n, is_open):
+    if n:
+        return not is_open
+    return is_open

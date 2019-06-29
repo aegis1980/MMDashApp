@@ -8,28 +8,19 @@ from dash.dependencies import Input,Output
 import numpy as np
 from vizapp.app import glasses,zone_names
 
-
-""" app page"""
-app_page = html.Div([
-   
-     dbc.Row([
-        dbc.Col([
-            dbc.Label("Scenarios select"),
-            dbc.RadioItems(
-                id='scenario-select',
-                options=[{'label': i, 'value': i} for i in glasses],
-                value=glasses[0]
-            )
-        ], width=3),
+settings = dbc.Row([
 
        dbc.Col([
-            dbc.Label("Zone(s) select"),
+           dbc.Card(
+                [
+            html.H4("Zone(s) select"),
             dbc.Checklist(
                 id='zones-select',
                 options=[{'label': i, 'value': i} for i in zone_names],
                 values=zone_names
             )
-        ], width = 3),
+        ]
+                , body=True)], width = 3),
 
        dbc.Col([
 
@@ -40,8 +31,7 @@ app_page = html.Div([
                 max=48,
                 value=[16,36],
                 step=2,
-                updatemode='drag'
-                
+                updatemode='drag'            
             ),
             html.Div(id='slider-output-start'),
             html.Div(id='slider-output-end'),   
@@ -49,11 +39,11 @@ app_page = html.Div([
             dbc.FormGroup(
                 [
                     dbc.Label("PMV range"),
-                    dcc.RangeSlider(
+                    dcc.Slider(
                         id='pmv-slider',
                         min=-2,
                         max=2,
-                        value=[-0.5,0.5],
+                        value=0.5,
                         marks= {i: '{}'.format(i) for i in np.arange(-2, 2, 0.25)},
                         step = 0.25
                     )
@@ -68,11 +58,43 @@ app_page = html.Div([
 )
             
         ], width = 6)
+    ])
+
+def scenario_row(name):
+    div = dbc.Row([
+        dbc.Col([
+            html.H3("Scenario " + name),
+            dbc.RadioItems(
+                id='scenario-select',
+                options=[{'label': i, 'value': i} for i in glasses],
+                value=glasses[0]
+            ),    
+        ], width = 2),
+        dbc.Col([
+             dcc.Graph(id='plain-heatmap')
+        ], width = 10 )
+    ])
+    return div
+
+""" app page"""
+app_page = html.Div([
+    dbc.Row([
+        dbc.Col([dbc.Button(
+                "Show settings",
+                id="collapse-button", 
+                className ="glyphicon glyphicon-cog"
+        ) ],width =3),
+        dbc.Col("Currently showing: settings",width =9)
+      
     ]),
 
-    dcc.Graph(id='plain-heatmap'),
+    dbc.Collapse(
+        [settings],
+        id = 'collapse'
+    ),
+    scenario_row('A')
+    ,
     
-   
     dcc.Graph(id='graph-with-slider')
 ]) # end of index_page
 
