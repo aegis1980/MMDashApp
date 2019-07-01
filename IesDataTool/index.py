@@ -52,7 +52,7 @@ app.layout = html.Div([
     navbar,
 
     # content will be rendered in this element
-    dbc.Container(id='page-content', fluid=False)
+    dbc.Container(id='page-content', fluid=True)
 ])
 
 

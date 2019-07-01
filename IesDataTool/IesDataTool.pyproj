@@ -51,9 +51,11 @@
     <Folder Include="vizapp\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\bootstrap-input-spinner.js" />
     <Content Include="assets\styling.css" />
     <Content Include="data\data_file.xlsx" />
     <Content Include="data\full_PMV_summer_clo.csv" />
+    <Content Include="data\glass_info.js" />
     <Content Include="static\img\mm_logo.png" />
     <Content Include="static\img\mm_logo.svg" />
   </ItemGroup>

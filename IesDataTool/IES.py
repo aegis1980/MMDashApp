@@ -2,7 +2,6 @@ import pandas as pd
 import _pickle as pickle
 from pathlib import Path
 
-
 class IesDataTool:
 
     """ file where data imported from pmv_scv saved """
@@ -23,7 +22,7 @@ class IesDataTool:
         INTERNAL_TEMP, 
         RADIANT_TEMP, 
         OUTDOOR_TEMP
-        ]
+     ]
 
     """ Dict name for generated combined file """
     COMBINED_PMV= 'Combined PMV'
@@ -181,7 +180,7 @@ class IesDataTool:
 
 
 
-    def get_heatmap_array_df(self, dataset = COMBINED_PMV, zones = None, scenario = None, time_range = None, hottest_n = None):
+    def get_heatmap_array_df(self, dataset = COMBINED_PMV, zones = None, scenario = None, time_range = None, data_mode= None, n_days = None):
         pmv_df = self._full_df[dataset]
         df = pmv_df[[(scenario, i) for i in zones]].max(axis=1).unstack().transpose().iloc[::-1]
 
@@ -189,13 +188,14 @@ class IesDataTool:
         if time_range is not None:
             df = df.loc[time_range[1]:time_range[0]]
 
-        df = df[::-1] # reverse rows so early is on bottom of hmap
+        df = df[::-1] # reverse rows so early in day is on bottom of hmap
 
-        if isinstance(hottest_n, int): 
-            # taking 'hottest' as largest summed pmv. over allotted time period.
-            sum = df.sum().sort_values(ascending = False)
-            sum = sum[:-(len(sum)-hottest_n)]
-            df = df[sum.index]
+        if data_mode != 'Y': # if datamode is 'Y' (year) then return whole year's data
+            if isinstance(n_days, int): 
+                # taking 'hottest'(NH) or coldest as largest/smallest summed pmv. over allotted time period.
+                sum = df.sum().sort_values(ascending = (data_mode == 'NC'))
+                sum = sum[:-(len(sum)-n_days)]
+                df = df[sum.index]
 
         return df
 
