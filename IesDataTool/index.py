@@ -1,5 +1,5 @@
 """
-index.py loads different apps on different urls
+index.py loads different apps/subapps on different urls
 """
 
 import dash_core_components as dcc
@@ -10,7 +10,9 @@ import dash_bootstrap_components as dbc
 from app import app
 
 from vizapp.layout import app_page as vizapp_page 
+from costapp.layout import app_page as costapp_page 
 import vizapp.callbacks
+import costapp.callbacks
 
 MOTTS_LOGO = "static/img/mm_logo.svg"
 
@@ -28,17 +30,6 @@ navbar = dbc.Navbar(
                 align="center",
                 no_gutters=True,
             ),
-        ),
-        dbc.DropdownMenu(
-            nav=True,
-            in_navbar=True,
-            label="Menu",
-            children=[
-                dbc.DropdownMenuItem("Entry 1"),
-                dbc.DropdownMenuItem("Entry 2"),
-                dbc.DropdownMenuItem(divider=True),
-                dbc.DropdownMenuItem("Entry 3"),
-            ],
         ),
     ]),
     color="dark",
@@ -59,10 +50,10 @@ app.layout = html.Div([
 @app.callback(Output('page-content', 'children'),
               [Input('url', 'pathname')])
 def display_page(pathname):
-    if pathname == '/page-1':
-        return layout1
-    elif pathname == '/page-2':
-        return layout2
+    if pathname == '/pmv':
+        return vizapp_page
+    elif pathname == '/cost':
+        return costapp_page
     else:
         return vizapp_page
     # You could also return a 404 "URL not found" page here
