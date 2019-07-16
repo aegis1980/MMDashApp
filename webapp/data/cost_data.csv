@@ -1,0 +1,5 @@
+scenario,rate ($/m2),annual cooling (kWh pa),annual heating (kWh pa),expected life (yr)
+BECA SU,1500,16492,16492,50
+BECA IGU,2000,12671,12671,30
+MM SU,1600,16492,16492,50
+MM IGU,1900,12671,12671,30
