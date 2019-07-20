@@ -29,6 +29,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="costapp\layout.py" />
+    <Compile Include="ghwebsocketapp\app.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="vizapp\layout.py">
       <SubType>Code</SubType>
     </Compile>
@@ -45,7 +48,7 @@
     <Compile Include="scripts\module1.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app.py">
+    <Compile Include="baseapp.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="scripts\runme.py" />
@@ -54,6 +57,7 @@
     <Folder Include="data\" />
     <Folder Include="assets\" />
     <Folder Include="costapp\" />
+    <Folder Include="ghwebsocketapp\" />
     <Folder Include="scripts\" />
     <Folder Include="static\" />
     <Folder Include="static\img\" />

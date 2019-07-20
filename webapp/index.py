@@ -7,7 +7,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 
-from app import app
+from baseapp import app, server
 
 from vizapp.layout import app_page as vizapp_page 
 from costapp.layout import app_page as costapp_page 
@@ -54,9 +54,14 @@ def display_page(pathname):
         return vizapp_page
     elif pathname == '/cost':
         return costapp_page
+    elif pathname == '/ghsocket':
+        return ghsocket_page
     else:
         return vizapp_page
     # You could also return a 404 "URL not found" page here
 
 if __name__ == '__main__':
+   # server.serve_forever()
     app.run_server(debug=True)
+
+

@@ -1,6 +1,6 @@
 ""
 
-from app import app
+from baseapp import app
 import dash
 from dash.dependencies import Input, Output, State
 

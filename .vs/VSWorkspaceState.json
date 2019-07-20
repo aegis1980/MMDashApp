@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\webapp"
+    "\\webapp",
+    "\\webapp\\vizapp"
   ],
+  "SelectedNode": "\\webapp\\vizapp\\app.py",
   "PreviewInSolutionExplorer": false
 }
