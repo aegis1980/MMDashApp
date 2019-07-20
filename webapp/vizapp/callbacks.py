@@ -1,6 +1,6 @@
 ""
 
-from baseapp import app
+from rootapp import app
 from dash.dependencies import Input, Output, State
 
 import plotly.graph_objs as go

@@ -48,7 +48,7 @@
     <Compile Include="scripts\module1.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="baseapp.py">
+    <Compile Include="rootapp.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="scripts\runme.py" />
