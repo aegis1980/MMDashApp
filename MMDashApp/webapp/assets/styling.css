@@ -1,0 +1,19 @@
+/*
+    This is automatically loaded by dash app in app.py.
+    after the bootstrap theme. 
+*/
+
+/* bootstrap scale all text on this. 
+    this is smaller than default (16px)
+*/
+body
+{
+    font-size: 12px
+}
+
+.navbar {
+    padding-top: 0.3rem;
+    padding-right: 1rem;
+    padding-bottom: 0.3rem;
+    padding-left: 1rem;
+}
