@@ -1,9 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\webapp",
-    "\\webapp\\vizapp"
+    "\\Application"
   ],
-  "SelectedNode": "\\MMDashApp.sln",
+  "SelectedNode": "\\Application\\python_webapp_flask.pyproj",
   "PreviewInSolutionExplorer": false
 }
