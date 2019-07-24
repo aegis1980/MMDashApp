@@ -1,12 +1,13 @@
 import pandas as pd
 import _pickle as pickle
 from pathlib import Path
+from python_webapp_flask import ASSETS_PATH
 import os
 
 class IesDataTool:
 
     """ file where data imported from pmv_scv saved """
-    PICKLE_FILENAME = 'python_webapp_flask\data\myfile.pkl'
+    PICKLE_FILENAME = ASSETS_PATH + 'data\myfile.pkl'
 
     # Default sheet name from IES
     # Do not change unless you changed sheet names in IES    
@@ -244,7 +245,6 @@ class IesDataTool:
 
 
     def load_data_from_pickle(self):
-        print(os.getcwd())
         my_file = Path(IesDataTool.PICKLE_FILENAME)
         if my_file.is_file():
             print('Loading from existing data from pickle file')

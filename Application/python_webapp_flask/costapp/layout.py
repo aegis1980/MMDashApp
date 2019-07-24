@@ -9,6 +9,7 @@ from dash.dependencies import Input,Output, State
 import pandas as pd
 
 import numpy as np
+from python_webapp_flask import ASSETS_PATH
 from python_webapp_flask.costapp.app import my_cost_tool,glasses,zone_names, glass_info
 import python_webapp_flask.costapp.app as tool
 
@@ -21,7 +22,7 @@ BLUE_COLOR = '#1F9BCF'
 params = [
     'Rate($)', 'Area(m2)', 'Upfront cost($)', 'Service life(y)', 'Life Cost($)'
 ]
-df = pd.read_csv('python_webapp_flask\data\cost_data.csv')
+df = pd.read_csv(ASSETS_PATH + 'data\cost_data.csv')
 
 """ app page
 this is content is nested into Bootstrap fluid=true container in index.py"""

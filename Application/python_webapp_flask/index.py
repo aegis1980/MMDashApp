@@ -7,14 +7,14 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 
-from python_webapp_flask import app, server
+from python_webapp_flask import app, ASSETS_PATH
 
 from python_webapp_flask.vizapp.layout import app_page as vizapp_page 
 from python_webapp_flask.costapp.layout import app_page as costapp_page 
 import python_webapp_flask.vizapp.callbacks
 import python_webapp_flask.costapp.callbacks
 
-MOTTS_LOGO = "static/img/mm_logo.svg"
+MOTTS_LOGO = "img/mm_logo.svg"
 
 navbar = dbc.Navbar(
     dbc.Container(
@@ -23,7 +23,7 @@ navbar = dbc.Navbar(
             # Use row and col to control vertical alignment of logo / brand
             dbc.Row(
                 [
-                    dbc.Col(html.Img(src=MOTTS_LOGO, height="65px")),
+                    dbc.Col(html.Img(src=app.get_asset_url(MOTTS_LOGO), height="65px")),
                     dbc.Col(dbc.NavbarBrand("IES Data viewer", className="ml-2")),
                     dbc.Col("UoA Rec Centre Atrium")
                 ],

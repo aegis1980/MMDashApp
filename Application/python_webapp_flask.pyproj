@@ -53,27 +53,28 @@
     <Compile Include="python_webapp_flask\__init__.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="python_webapp_flask\data\" />
+    <Folder Include="python_webapp_flask\assets\img\" />
+    <Folder Include="python_webapp_flask\assets\styles\" />
+    <Folder Include="python_webapp_flask\assets\scripts\" />
+    <Folder Include="python_webapp_flask\assets\data\" />
     <Folder Include="python_webapp_flask\assets\" />
     <Folder Include="python_webapp_flask\costapp\" />
     <Folder Include="python_webapp_flask\ghwebsocketapp\" />
     <Folder Include="python_webapp_flask\" />
     <Folder Include="python_webapp_flask\scripts\" />
-    <Folder Include="python_webapp_flask\static\" />
-    <Folder Include="python_webapp_flask\static\img\" />
     <Folder Include="python_webapp_flask\vizapp\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="python_webapp_flask\assets\bootstrap-input-spinner.js" />
-    <Content Include="python_webapp_flask\assets\styling.css" />
-    <Content Include="python_webapp_flask\data\cost_data.csv" />
-    <Content Include="python_webapp_flask\data\data_file.xlsx" />
-    <Content Include="python_webapp_flask\data\full_PMV_summer_clo.csv" />
-    <Content Include="python_webapp_flask\data\glass_info.js" />
+    <Content Include="python_webapp_flask\assets\scripts\bootstrap-input-spinner.js" />
+    <Content Include="python_webapp_flask\assets\styles\styling.css" />
+    <Content Include="python_webapp_flask\assets\data\cost_data.csv" />
+    <Content Include="python_webapp_flask\assets\data\data_file.xlsx" />
+    <Content Include="python_webapp_flask\assets\data\full_PMV_summer_clo.csv" />
+    <Content Include="python_webapp_flask\assets\data\glass_info.js" />
     <Content Include="requirements.txt" />
-    <Content Include="python_webapp_flask\data\myfile.pkl" />
-    <Content Include="python_webapp_flask\static\img\mm_logo.png" />
-    <Content Include="python_webapp_flask\static\img\mm_logo.svg" />
+    <Content Include="python_webapp_flask\assets\data\myfile.pkl" />
+    <Content Include="python_webapp_flask\assets\img\mm_logo.png" />
+    <Content Include="python_webapp_flask\assets\img\mm_logo.svg" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
