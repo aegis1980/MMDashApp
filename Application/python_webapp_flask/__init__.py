@@ -2,9 +2,9 @@ import dash
 import flask
 import dash_bootstrap_components as dbc
 from os import environ
+import os
 
-
-ASSETS_PATH = 'python_webapp_flask/assets/'
+ASSETS_PATH = os.path.join(os.getcwd(),'python_webapp_flask','assets')
 
 # styling:
 # LUX is a bootswatch theme which is included in dash-bootstrap

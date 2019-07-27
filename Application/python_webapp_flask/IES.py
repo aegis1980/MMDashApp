@@ -7,7 +7,7 @@ import os
 class IesDataTool:
 
     """ file where data imported from pmv_scv saved """
-    PICKLE_FILENAME = ASSETS_PATH + 'data\myfile.pkl'
+    PICKLE_FILENAME = os.path.join(ASSETS_PATH,'data' , 'myfile.pkl')
 
     # Default sheet name from IES
     # Do not change unless you changed sheet names in IES    

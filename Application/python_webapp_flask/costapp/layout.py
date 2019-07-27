@@ -1,3 +1,4 @@
+import os
 
 import dash
 import dash_table
@@ -22,7 +23,7 @@ BLUE_COLOR = '#1F9BCF'
 params = [
     'Rate($)', 'Area(m2)', 'Upfront cost($)', 'Service life(y)', 'Life Cost($)'
 ]
-df = pd.read_csv(ASSETS_PATH + 'data\cost_data.csv')
+df = pd.read_csv(os.path.join(ASSETS_PATH, 'data', 'cost_data.csv'))
 
 """ app page
 this is content is nested into Bootstrap fluid=true container in index.py"""
