@@ -17,7 +17,7 @@ my_ies_tool = IesDataTool(zone_names,glasses)
 my_ies_tool.load_data(filename,load_from_pickle = True, save_to_pickle = True)
 
 # this loads glass info (SC, U etc) from json file. 
-with open(ASSETS_PATH + 'data\glass_info.js', 'r') as f:
+with open(ASSETS_PATH + 'data\glass_info.json', 'r') as f:
         glass_info = json.load(f)
 
 # this is a bit of a hack

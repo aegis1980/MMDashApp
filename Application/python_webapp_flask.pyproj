@@ -30,9 +30,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="python_webapp_flask\costapp\layout.py" />
-    <Compile Include="python_webapp_flask\ghwebsocketapp\app.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="python_webapp_flask\vizapp\layout.py">
       <SubType>Code</SubType>
     </Compile>
@@ -59,28 +56,29 @@
     <Folder Include="python_webapp_flask\assets\data\" />
     <Folder Include="python_webapp_flask\assets\" />
     <Folder Include="python_webapp_flask\costapp\" />
-    <Folder Include="python_webapp_flask\ghwebsocketapp\" />
     <Folder Include="python_webapp_flask\" />
     <Folder Include="python_webapp_flask\scripts\" />
     <Folder Include="python_webapp_flask\vizapp\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Dockerfile" />
     <Content Include="python_webapp_flask\assets\scripts\bootstrap-input-spinner.js" />
     <Content Include="python_webapp_flask\assets\styles\styling.css" />
     <Content Include="python_webapp_flask\assets\data\cost_data.csv" />
     <Content Include="python_webapp_flask\assets\data\data_file.xlsx" />
     <Content Include="python_webapp_flask\assets\data\full_PMV_summer_clo.csv" />
-    <Content Include="python_webapp_flask\assets\data\glass_info.js" />
-    <Content Include="requirements.txt" />
+    <Content Include="python_webapp_flask\assets\data\glass_info.json" />
     <Content Include="python_webapp_flask\assets\data\myfile.pkl" />
     <Content Include="python_webapp_flask\assets\img\mm_logo.png" />
     <Content Include="python_webapp_flask\assets\img\mm_logo.svg" />
+    <Content Include="Readme.md" />
+    <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
       <Id>env</Id>
-      <Version>3.7</Version>
-      <Description>env (Python 3.7 (64-bit))</Description>
+      <Version>3.6</Version>
+      <Description>env (Python 3.6 (64-bit))</Description>
       <InterpreterPath>Scripts\python.exe</InterpreterPath>
       <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>

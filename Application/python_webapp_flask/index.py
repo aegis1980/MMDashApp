@@ -7,7 +7,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 
-from python_webapp_flask import app, ASSETS_PATH
+from python_webapp_flask import dash_app as app, ASSETS_PATH
 
 from python_webapp_flask.vizapp.layout import app_page as vizapp_page 
 from python_webapp_flask.costapp.layout import app_page as costapp_page 
@@ -54,8 +54,8 @@ def display_page(pathname):
         return vizapp_page
     elif pathname == '/cost':
         return costapp_page
-    elif pathname == '/realtime':
-        return ghsocket_page
+    #elif pathname == '/realtime':
+    #    return ghsocket_page
     else:
         return vizapp_page
     # You could also return a 404 "URL not found" page here

@@ -3,8 +3,6 @@ import flask
 import dash_bootstrap_components as dbc
 from os import environ
 
-from gevent import pywsgi
-from geventwebsocket.handler import WebSocketHandler
 
 ASSETS_PATH = 'python_webapp_flask/assets/'
 
@@ -12,22 +10,11 @@ ASSETS_PATH = 'python_webapp_flask/assets/'
 # LUX is a bootswatch theme which is included in dash-bootstrap
 # additional styling in assets/styling.css (which overides bootstrap theme) 
 
-# this mean we create our our instance of flask, the underlying framework to Dash
-flask_app = flask.Flask(__name__)
+dash_app = dash.Dash(external_stylesheets=[dbc.themes.LUX])
+dash_app.config.suppress_callback_exceptions = True
+dash_app.enable_dev_tools(debug=True)
 
-app = dash.Dash(
-    __name__, server = flask_app,
-    external_stylesheets=[dbc.themes.LUX])
-
-app.config.suppress_callback_exceptions = True
-app.enable_dev_tools(debug=True)
-
-#HOST = environ.get('SERVER_HOST', 'localhost')
-#try:
-#    PORT = int(environ.get('SERVER_PORT', '5000'))
-#except ValueError:
-#    PORT = 5000
-
-#server = pywsgi.WSGIServer((HOST, PORT), app.server, handler_class=WebSocketHandler)
+#get reference to flask.
+app = dash_app.server
 
 import python_webapp_flask.index

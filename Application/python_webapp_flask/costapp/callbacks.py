@@ -1,6 +1,6 @@
 ""
 
-from python_webapp_flask import app
+from python_webapp_flask import dash_app as app
 import dash
 from dash.dependencies import Input, Output, State
 

@@ -17,7 +17,7 @@ my_cost_tool = CostTool(ASSETS_PATH + 'data\cost_data.csv')
 DEFAULT_NZ_COMMERCIAL_ERATE = 16.88 #est c/kWhr for NZ MBIE for 2019 commercial
 
 # this loads glass info (SC, U etc) from json file. 
-with open(ASSETS_PATH + 'data\glass_info.js', 'r') as f:
+with open(ASSETS_PATH + 'data\glass_info.json', 'r') as f:
         glass_info = json.load(f)
 
 # this is a bit of a hack
