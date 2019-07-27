@@ -28,10 +28,10 @@
 
 
 FROM python:3.6
-LABEL maintainer="Azure App Service Container Images <appsvc-images@microsoft.com>"
+#LABEL maintainer="Azure App Service Container Images <appsvc-images@microsoft.com>"
 
-COPY . /app
-WORKDIR /app
+COPY . /
+WORKDIR /
 RUN pip install -r requirements.txt
 ENTRYPOINT ["python"]
 EXPOSE 5000
