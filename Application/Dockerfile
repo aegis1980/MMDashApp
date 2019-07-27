@@ -15,6 +15,7 @@
 
 FROM ubuntu:16.04
 LABEL maintainer="Azure App Service Container Images <appsvc-images@microsoft.com>"
+RUN add-apt-repository ppa:jonathonf/python-3.6
 RUN apt-get update -y
 RUN apt-get install -y python3.6 python3-pip python3-dev build-essential
 COPY . /app
