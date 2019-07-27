@@ -13,11 +13,12 @@
 # **********************************************************
 ## From automated Devops install boilerplate
 
-FROM ubuntu:16.04
+FROM ubuntu:16.10
 LABEL maintainer="Azure App Service Container Images <appsvc-images@microsoft.com>"
-RUN add-apt-repository ppa:jonathonf/python-3.6
+#RUN add-apt-repository ppa:jonathonf/python-3.6
+RUN build-essential
 RUN apt-get update -y
-RUN apt-get install -y python3.6 python3-pip python3-dev build-essential
+RUN apt-get install -y python3.6 python3-pip python3-dev
 COPY . /app
 WORKDIR /app
 RUN pip install -r requirements.txt
