@@ -3,7 +3,7 @@ import os
 
 import pandas as pd
 import plotly.graph_objs as go
-from python_webapp_flask.IES import IesDataTool 
+from python_webapp_flask.vizapp.IES import IesDataTool 
 from python_webapp_flask import ASSETS_PATH
 import numpy as np
 import math

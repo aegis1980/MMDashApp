@@ -26,7 +26,7 @@
     <Compile Include="runserver.py" />
     <Compile Include="python_webapp_flask\costapp\app.py" />
     <Compile Include="python_webapp_flask\costapp\callbacks.py" />
-    <Compile Include="python_webapp_flask\Cost.py">
+    <Compile Include="python_webapp_flask\costapp\Cost.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="python_webapp_flask\costapp\layout.py" />
@@ -39,7 +39,7 @@
     <Compile Include="python_webapp_flask\vizapp\callbacks.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="python_webapp_flask\IES.py" />
+    <Compile Include="python_webapp_flask\vizapp\IES.py" />
     <Compile Include="python_webapp_flask\index.py">
       <SubType>Code</SubType>
     </Compile>

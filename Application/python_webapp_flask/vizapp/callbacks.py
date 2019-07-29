@@ -9,7 +9,7 @@ import pandas as pd
 import math
 import numpy as np
 
-from python_webapp_flask.IES import IesDataTool
+from python_webapp_flask.vizapp.IES import IesDataTool
 import python_webapp_flask.vizapp.app as tool
 from python_webapp_flask.vizapp.app import my_ies_tool, glass_info
 

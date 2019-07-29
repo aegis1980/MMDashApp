@@ -6,7 +6,7 @@ import math
 import json
 import os
 
-from python_webapp_flask.Cost import CostTool
+from python_webapp_flask.costapp.Cost import CostTool
 from python_webapp_flask import ASSETS_PATH
 
 zone_names = ['Lower perimeter','Lower inner','Bleachers perimeter','Bleachers inner','Upper perimeter','Upper inner','Lower foyer perimeter','Lower foyer inner']
