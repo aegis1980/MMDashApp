@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Application"
+    "\\Application",
+    "\\Application\\python_webapp_flask",
+    "\\Application\\python_webapp_flask\\framework"
   ],
-  "SelectedNode": "\\ArmTemplates",
+  "SelectedNode": "\\Application\\python_webapp_flask\\index.py",
   "PreviewInSolutionExplorer": false
 }

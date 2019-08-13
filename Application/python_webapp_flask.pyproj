@@ -23,6 +23,15 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="python_webapp_flask\baseapp\app.py" />
+    <Compile Include="python_webapp_flask\baseapp\callbacks.py" />
+    <Compile Include="python_webapp_flask\baseapp\layout.py" />
+    <Compile Include="python_webapp_flask\framework\appmanager.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="python_webapp_flask\framework\idmanager.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="runserver.py" />
     <Compile Include="python_webapp_flask\costapp\app.py" />
     <Compile Include="python_webapp_flask\costapp\callbacks.py" />
@@ -57,6 +66,9 @@
     <Folder Include="python_webapp_flask\assets\" />
     <Folder Include="python_webapp_flask\costapp\" />
     <Folder Include="python_webapp_flask\" />
+    <Folder Include="python_webapp_flask\framework\" />
+    <Folder Include="python_webapp_flask\framework\layouts\" />
+    <Folder Include="python_webapp_flask\baseapp\" />
     <Folder Include="python_webapp_flask\scripts\" />
     <Folder Include="python_webapp_flask\vizapp\" />
   </ItemGroup>
